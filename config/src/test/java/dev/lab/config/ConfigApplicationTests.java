@@ -1,13 +1,13 @@
-package dev.practice.smartorder;
+package dev.lab.config;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SmartOrderApplicationTests {
+class ConfigApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }
