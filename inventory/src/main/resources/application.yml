@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: inventory
+  config:
+    import: "optional:configserver:https://712034d525d7.ngrok-free.app/"
+  cloud:
+    config:
+      label: main
+    bus:
+      trace:
+        enabled: true
+      id: inventory:8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: [busrefresh, refresh, health, info, bustrace, env]
+  endpoint:
+    env:
+      show-values: ALWAYS
+    configprops:
+      show-values: ALWAYS
+logging:
+  level:
+    org.springframework.cloud.bus.event.RefreshListener: INFO
+    org.springframework.cloud.context.scope.refresh: DEBUG
+    org.springframework.cloud.context.config.annotation.RefreshScope: DEBUG

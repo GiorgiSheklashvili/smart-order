@@ -1,12 +1,12 @@
 # SmartOrder – Advanced E-Commerce Microservices System
 
-## 🛠️ Project Goal
+##  Project Goal
 
 This project is designed as a **production-grade microservices system** built using **Java**, **Spring Boot**, and **modern cloud-native technologies**. Its primary goal is to serve as a **learning and practice platform** to explore and master real-world architectures, tools, and patterns used in high-scale distributed systems.
 
 ---
 
-## 🔧 Tech Stack & Tools
+## Tech Stack & Tools
 
 | Area            | Tools / Technologies                     |
 |-----------------|------------------------------------------|
@@ -28,7 +28,7 @@ This project is designed as a **production-grade microservices system** built us
 
 ---
 
-## 📦 Key Services
+## Key Services
 
 - `order-service`
 - `user-service`
@@ -42,7 +42,7 @@ This project is designed as a **production-grade microservices system** built us
 
 ---
 
-## 🧠 Learning Focus Areas
+## Learning Focus Areas
 
 - Production-level configuration & automation
 - High-concurrency Java + SQL performance tuning
@@ -53,6 +53,35 @@ This project is designed as a **production-grade microservices system** built us
 
 ---
 
-## 💬 Status
+## Status
 
 Actively under development as a **personal practice ground** for building resilient and scalable distributed systems. Contributions, suggestions, and feedback are welcome!
+## How to Receive Updates from [GitHub Config Repo](https://github.com/GiorgiSheklashvili/smart-order-config)
+
+Follow these steps to wire together Git → Spring Cloud Config → Kafka → Inventory Service with real-time property updates!
+### Quick Command Summary
+
+```bash
+# 1. Start Kafka
+docker-compose up -d
+
+# 2. Run Config Server
+cd config && ./mvnw spring-boot:run
+
+# 3. Start Ngrok on port 8071
+ngrok http 8071
+
+# 4. Update service `application.yml` files:
+#    Set:
+#       spring.config.import: "optional:configserver:https://<your-ngrok-url>"
+
+# 5. Configure Git webhook:
+#    Point to: https://<your-ngrok-url>/monitor
+
+# 6. Run Inventory Microservice
+cd inventory && ./mvnw spring-boot:run
+
+# 7. Push a change to the config repository (e.g., update inventory.threshold)
+
+# 8. From WSL, verify the updated property:
+curl http://192.168.50.206:8080/actuator/env | grep inventory.threshold
