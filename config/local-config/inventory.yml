@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: inventory
+
+inventory:
+  threshold: 100
